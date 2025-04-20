@@ -2,20 +2,24 @@
 <html>
 <head>
   <title>dehijlbrd</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Enables mobile view -->
   <style>
     body {
       font-family: Arial;
       background-color: #FFFFFF;
       text-align: center;
-      padding-top: 50px;
+      padding: 20px;
+      margin: 0;
     }
     img {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       border-radius: 10px;
     }
     .side-button {
       margin-top: 20px;
-      padding: 10px 108px;
+      padding: 12px;
+      width: 100%;
       font-size: 17px;
       background-color: #FF0000;
       color: #FFFFFF;
@@ -23,10 +27,11 @@
       border-radius: 10px;
     }
     .form-container {
-      margin-top: 50px;
+      margin-top: 30px;
       text-align: left;
       max-width: 400px;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
       background: white;
       padding: 20px;
       border-radius: 10px;
@@ -38,6 +43,7 @@
       color: white;
       padding: 10px;
       border-radius: 5px;
+      margin-top: 0;
     }
     .checkbox-section {
       margin-bottom: 15px;
@@ -69,9 +75,7 @@
         </div>
       </div>
 
-      <div style="text-align: center;">
-        <button class="side-button" type="submit">Continue</button>
-      </div>
+      <button class="side-button" type="submit">Continue</button>
     </form>
   </div>
 
@@ -83,9 +87,8 @@
         return false;
       }
 
-      // Redirect to next page after checkbox is selected
-      window.location.href = "page3.html"; // Replace with actual next page
-      return false; // Prevent form submission
+      window.location.href = "page3.html"; // Change this to your next page
+      return false;
     }
   </script>
 </body>
