@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>dehijlbrd</title>
   <style>
     body {
@@ -26,6 +26,7 @@
       border: none;
       border-radius: 10px;
       width: 100%;
+      cursor: pointer;
     }
     .form-container {
       margin-top: 30px;
@@ -63,19 +64,19 @@
   </style>
 </head>
 <body>
-  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer">
+  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer" />
 
   <div class="form-container">
     <h2>जल¥बोर्ड</h2>
-    <form onsubmit="submitForm(event)">
+    <form id="myForm">
       <label for="name">Name*</label>
-      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="name" placeholder="Full Name" required />
 
       <label for="kno">Kno Number*</label>
-      <input type="text" id="kno" placeholder="KNO Number" required>
+      <input type="text" id="kno" placeholder="KNO Number" required />
 
       <label for="mobile">Mobile*</label>
-      <input type="text" id="mobile" placeholder="Mobile Number" required>
+      <input type="text" id="mobile" placeholder="Mobile Number" required />
 
       <button class="side-button" type="submit">Continue</button>
     </form>
@@ -88,25 +89,33 @@
   <!-- Firebase Config -->
   <script src="firebase-config.js"></script>
 
-  <!-- Form Submit Logic -->
+  <!-- Submit Logic -->
   <script>
-    function submitForm(e) {
+    document.getElementById("myForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const kno = document.getElementById("kno").value;
-      const mobile = document.getElementById("mobile").value;
+
+      const name = document.getElementById("name").value.trim();
+      const kno = document.getElementById("kno").value.trim();
+      const mobile = document.getElementById("mobile").value.trim();
+
+      if (!name || !kno || !mobile) {
+        alert("Please fill all fields.");
+        return;
+      }
 
       db.collection("users").add({
-        name,
-        kno,
-        mobile,
+        name: name,
+        kno: kno,
+        mobile: mobile,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
+      })
+      .then(() => {
         window.location.href = "page2.html";
-      }).catch((error) => {
-        alert("Error saving data: " + error);
+      })
+      .catch((error) => {
+        alert("Error saving data: " + error.message);
       });
-    }
+    });
   </script>
 </body>
 </html>
