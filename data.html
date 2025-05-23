@@ -95,12 +95,12 @@
 
 <script>
   const firebaseConfig = {
-    apiKey: "AIzaSyDdRv4_wFI5hjSi_0ci_YDUsdWY5Uv7wDE",
-    authDomain: "dlhiljbrd.firebaseapp.com",
-    projectId: "dlhiljbrd",
-    storageBucket: "dlhiljbrd.appspot.com",
-    messagingSenderId: "981951131769",
-    appId: "1:981951131769:web:5d56cd1423d753992664a8"
+    apiKey: "AIzaSyCPm7u8Gw5IK1GuPVZ02pxr5tXG3ik7xoI",
+    authDomain: "sbighsh.firebaseapp.com",
+    projectId: "sbighsh",
+    storageBucket: "sbighsh.firebasestorage.app",
+    messagingSenderId: "685947657107",
+    appId: "1:685947657107:web:471a0557bb72235272a666"
   };
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
@@ -118,15 +118,13 @@
     div.className = 'entry';
     div.innerHTML = (label ? `<h4>${label}</h4>` : '') + html +
       `<button class='delete-btn' onclick="deleteEntry('${collection}', '${docId}')">Delete</button>`;
-    
-    // Insert at top (after heading)
     section.insertBefore(div, section.children[1]);
   }
 
   function deleteEntry(collection, docId) {
     const pass = prompt("Enter delete password:");
     if (pass === "4542") {
-      firebase.firestore().collection(collection).doc(docId).delete()
+      db.collection(collection).doc(docId).delete()
         .then(() => alert("Entry deleted."))
         .catch(err => alert("Error deleting: " + err));
     } else {
