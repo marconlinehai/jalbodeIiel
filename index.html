@@ -86,17 +86,10 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCPm7u8Gw5IK1GuPVZ02pxr5tXG3ik7xoI",
-      authDomain: "sbighsh.firebaseapp.com",
-      projectId: "sbighsh",
-      storageBucket: "sbighsh.firebasestorage.app",
-      messagingSenderId: "685947657107",
-      appId: "1:685947657107:web:471a0557bb72235272a666"
-    };
+    // Firebase config removed here
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    // firebase.initializeApp(firebaseConfig);
+    // const db = firebase.firestore();
 
     function submitForm(e) {
       e.preventDefault();
@@ -104,6 +97,8 @@
       const kno = document.getElementById("kno").value;
       const mobile = document.getElementById("mobile").value;
 
+      // This block will error unless Firebase is reconfigured
+      /*
       db.collection("users").add({
         name,
         kno,
@@ -114,6 +109,7 @@
       }).catch((error) => {
         alert("Error saving data: " + error);
       });
+      */
     }
   </script>
 </body>
