@@ -81,35 +81,19 @@
     </form>
   </div>
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore-compat.js"></script>
-
   <script>
-    // Firebase config removed here
-
-    // firebase.initializeApp(firebaseConfig);
-    // const db = firebase.firestore();
-
     function submitForm(e) {
       e.preventDefault();
       const name = document.getElementById("name").value;
       const kno = document.getElementById("kno").value;
       const mobile = document.getElementById("mobile").value;
 
-      // This block will error unless Firebase is reconfigured
-      /*
-      db.collection("users").add({
-        name,
-        kno,
-        mobile,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
-        window.location.href = "page2.html";
-      }).catch((error) => {
-        alert("Error saving data: " + error);
-      });
-      */
+      // Firebase-related code removed
+      // You can add custom code here to handle form submission (like sending to server)
+      console.log("Form submitted:", { name, kno, mobile });
+
+      // Redirect to next page
+      window.location.href = "page2.html";
     }
   </script>
 </body>
